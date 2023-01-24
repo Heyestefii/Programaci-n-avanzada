@@ -1,0 +1,36 @@
+/*
+ * Programación avanzada
+ *
+ * Tercer examen 
+ *
+ * Diana Estefanía Ortiz Ledesma
+ * A01209403
+ */
+
+1. ¿De cuál problema de sincronización se trata? 
+Productor - consumidor 
+
+2. Definición de estrategia y mecanismos para resolver el problema 
+Para la solución del problema, podemos observar que las abejas tienen el papel de productoras.
+Mientras que el oso, es el consumidor de todo la miel que depositan en la olla. 
+Por lo tanto, la olla es el recurso que comparten.
+
+Ya que la olla es el recurso compartido, en el código es implementado como un buffer, cuyo limite es la cantidad de porciones ingresadas por el usuario. 
+De esta forma, las abejas productoras pueden introducir elementos y el oso puede extraer los elementos, del mismo buffer.
+
+Para poder tener control sobre la consistencia de estas actividades, se implementa una exclusión mutua. 
+Esto se realiza con el uso de semáforos, que restringen o permiten el acceso al recurso compartido.
+Los métodos utilizados para lograr esto son : sem_init , sem_wait , sem_post.
+
+Por último, se utilizan hilos en la solución del problema, para que cada tarea (abejas y oso) se encuentre corriendo por separado y poder sincronizarlos correctamente.
+El código se encuentra documentado :)
+
+3. Explicación para correr el programa 
+
+   gcc abejasyoso.c -o abejasyoso -pthread 
+
+   ./abejasyoso numabejas porciones 
+
+   Ejemplo : 
+   ./abejasyoso 2 5 
+
